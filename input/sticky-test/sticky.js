@@ -6,10 +6,10 @@ ScrollTrigger.create({
   start: "bottom bottom",      // when figure's bottom hits viewport bottom
   end: "bottom bottom+=0",     // placeholder, we'll calculate relative to parent
   pin: true,                   // pin the figure
-  pinSpacing: false,           // optional, remove extra spacing
+  pinSpacing: true,           // optional, remove extra spacing
   onEnter: () => console.log("Pin started"),
   onLeave: () => console.log("Pin ended"),
-  markers: true                // for debugging, can remove in production
+  markers: false                // for debugging, can remove in production
 });
 
 // Dynamically set `end` relative to parent section
@@ -25,7 +25,7 @@ ScrollTrigger.create({
   end: () => `+=${parentBottom - figure.getBoundingClientRect().bottom}`,
   pin: figure,
   pinSpacing: false,
-  markers: true
+  markers: false
 });
 
 const parallaxSection = document.querySelector("section.parallax-section.level1");

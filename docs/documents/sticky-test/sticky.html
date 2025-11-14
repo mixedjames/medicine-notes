@@ -16,7 +16,7 @@
   }
 
   section.parallax-section.level1 {
-    background-image: url("https://cdn.pixabay.com/photo/2016/03/18/15/02/ufo-1265186_1280.jpg");
+    background-image: url("sticky/space.jpg");
     height: auto;
 
     color: white;
@@ -32,7 +32,17 @@
     <div class="viewport" id="viewport">
                   <header id="title-block-header">
         <h1 class="title">Testing sticky elements</h1>
-                                                  true
+                                                  <ul>
+                                                  <li><div
+                                                  data-custom-style="List Paragraph">
+                                                  <p>Sticky elements</p>
+                                                  </div></li>
+                                                  <li><div
+                                                  data-custom-style="List Paragraph">
+                                                  <p>Parallax
+                                                  backgrounds</p>
+                                                  </div></li>
+                                                  </ul>
               </header>
                   <section id="the-beginning-of-the-sticky-section"
                   class="level1 sticky-section">
@@ -44,7 +54,7 @@
                   style="width:1in;height:1in"
                   alt="Rubber duck with solid fill" />
                   <figcaption><div data-custom-style="caption">
-                  <p>Figure 1A sticky duck!</p>
+                  <p>A sticky duck!</p>
                   </div></figcaption>
                   </figure>
                   <p>And this is some text that will appear after the
@@ -78,10 +88,10 @@
     start: "bottom bottom",      // when figure's bottom hits viewport bottom
     end: "bottom bottom+=0",     // placeholder, we'll calculate relative to parent
     pin: true,                   // pin the figure
-    pinSpacing: false,           // optional, remove extra spacing
+    pinSpacing: true,           // optional, remove extra spacing
     onEnter: () => console.log("Pin started"),
     onLeave: () => console.log("Pin ended"),
-    markers: true                // for debugging, can remove in production
+    markers: false                // for debugging, can remove in production
   });
 
   // Dynamically set `end` relative to parent section
@@ -97,7 +107,7 @@
     end: () => `+=${parentBottom - figure.getBoundingClientRect().bottom}`,
     pin: figure,
     pinSpacing: false,
-    markers: true
+    markers: false
   });
 
   const parallaxSection = document.querySelector("section.parallax-section.level1");

@@ -58,6 +58,12 @@ $(OUT_DIR)/%.html: $(SRC_DIR)/%.docx
 		--metadata=styler="$(patsubst %.docx,%.css,$(realpath $<))" \
 		-V path_to_root="$(call back_to_root,$(dir $@))" \
 		--syntax-highlighting=none
+	@cd $(dir $@) && mkdir -p $(basename $(@F))
+	@cd $(dir $@) && \
+		src="$(realpath $(dir $<))/$(basename $(@F))" && \
+		[ -d "$$src" ] && cp "$$src"/* "$(basename $(@F))" || true
+
+#	cd $(dir $@) && cp "$(realpath $(dir $<))/$(basename $(@F))"/* "$(basename $(@F))"
 
 # Check for spaces in filenames
 check:
