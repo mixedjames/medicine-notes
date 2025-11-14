@@ -1,32 +1,49 @@
 gsap.registerPlugin(ScrollTrigger);
 
-ScrollTrigger.create({
-  trigger: "figure",
-  scroller: "#viewport",      // your scroll container
-  start: "bottom bottom",      // when figure's bottom hits viewport bottom
-  end: "bottom bottom+=0",     // placeholder, we'll calculate relative to parent
-  pin: true,                   // pin the figure
-  pinSpacing: true,           // optional, remove extra spacing
-  onEnter: () => console.log("Pin started"),
-  onLeave: () => console.log("Pin ended"),
-  markers: false                // for debugging, can remove in production
-});
+(function () {
+  // User-defined bottom margin (in pixels)
+  const bottomMargin = 0; // adjust as needed
 
-// Dynamically set `end` relative to parent section
-const figure = document.querySelector("figure");
-const parentSection = figure.closest("section");
-const figureHeight = figure.offsetHeight;
-const parentBottom = parentSection.offsetTop + parentSection.offsetHeight;
+  // Select the figure and parent section
+  const figure = document.querySelector("figure");
+  const parentSection = figure.closest("section");
 
-ScrollTrigger.create({
-  trigger: figure,
-  scroller: "#viewport",
-  start: "bottom bottom",
-  end: () => `+=${parentBottom - figure.getBoundingClientRect().bottom}`,
-  pin: figure,
-  pinSpacing: false,
-  markers: false
-});
+  // --- Step 1: Wrap figure dynamically ---
+  const wrapper = document.createElement("div");
+  wrapper.classList.add("pin-wrap");
+  figure.parentNode.insertBefore(wrapper, figure);
+  wrapper.appendChild(figure);
+
+  let oldHeight;
+
+  // --- Step 2: Create pinned ScrollTrigger with bottom margin ---
+  const trigger = ScrollTrigger.create({
+    trigger: wrapper,                     // pin the wrapper
+    scroller: "#viewport",                // your scroll container
+    start: "bottom bottom-=10em",               // when figure bottom hits viewport bottom
+    end: () => {
+      // distance from figure bottom to parent bottom minus margin
+      const sectionBottom = parentSection.offsetTop + parentSection.offsetHeight;
+      const figureBottom = figure.offsetTop + figure.offsetHeight;
+      return "+=" + (sectionBottom - figureBottom - bottomMargin - figure.offsetHeight);
+    },
+    pin: wrapper,                         // pin wrapper, not figure
+    pinSpacing: false,                     // remove leftover spacing
+    pinType: "transform",                  // smooth mobile pinning
+    anticipatePin: 1,                       // reduces jump at start
+    onRefresh: (self) => {
+      oldHeight = self.spacer.style.height;
+      self.spacer.style.height = "0px";
+    },
+  });
+
+  const newSpacer = trigger.spacer.cloneNode(false);
+  parentSection.appendChild(newSpacer);
+  if (oldHeight) {
+    newSpacer.style.height = oldHeight;
+  }
+
+})();
 
 const parallaxSection = document.querySelector("section.parallax-section.level1");
 

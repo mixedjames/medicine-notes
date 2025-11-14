@@ -1,6 +1,9 @@
+section.sticky-section.level1 {
+  height: auto;
+}
+
 .sticky-section figure {
-  border: solid black 1px;
-  background: white;
+  background: papayawhip;
 }
 
 section.parallax-section.level1 {
