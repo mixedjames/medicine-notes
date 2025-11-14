@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+          <title>Testing sticky elements</title>
+  <link rel="stylesheet" href="../../css/styles.css" />
+
+    
+    <style>
+  .sticky-section figure {
+    border: solid black 1px;
+    background: white;
+  }
+
+  section.parallax-section.level1 {
+    background-image: url("https://cdn.pixabay.com/photo/2016/03/18/15/02/ufo-1265186_1280.jpg");
+    height: auto;
+
+    color: white;
+    padding-top: 150pt;
+    padding-bottom: 150pt;
+  }
+  </style>
+  
+</head>
+
+<body class="viewport-container-outer">
+  <div class="viewport-container-inner">
+    <div class="viewport" id="viewport">
+                  <header id="title-block-header">
+        <h1 class="title">Testing sticky elements</h1>
+                                                  true
+              </header>
+                  <section id="the-beginning-of-the-sticky-section"
+                  class="level1 sticky-section">
+                  <h1 class="sticky-section">The beginning of the sticky
+                  section</h1>
+                  <p>This is the pre-amble.</p>
+                  <figure data-custom-style="Subtitle">
+                  <img src="sticky/media/image2.svg"
+                  style="width:1in;height:1in"
+                  alt="Rubber duck with solid fill" />
+                  <figcaption><div data-custom-style="caption">
+                  <p>Figure 1A sticky duck!</p>
+                  </div></figcaption>
+                  </figure>
+                  <p>And this is some text that will appear after the
+                  sticky duck.</p>
+                  </section>
+                  <section
+                  id="a-further-section-this-time-with-a-parallax-background"
+                  class="level1 parallax-section">
+                  <h1 class="parallax-section">A further section, this
+                  time with a parallax background</h1>
+                  <p>Some subtitle</p>
+                  </section>
+                  <section id="another-section" class="level1">
+                  <h1>Another section</h1>
+                  <p>Some more text.</p>
+                  </section>
+          </div><!-- .viewport -->
+  </div><!-- .viewport-container-inner -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="../../js/bootstrap.js" type="module"></script>
+
+    <script type="text/javascript">
+  function runController() {
+  gsap.registerPlugin(ScrollTrigger);
+
+  ScrollTrigger.create({
+    trigger: "figure",
+    scroller: "#viewport",      // your scroll container
+    start: "bottom bottom",      // when figure's bottom hits viewport bottom
+    end: "bottom bottom+=0",     // placeholder, we'll calculate relative to parent
+    pin: true,                   // pin the figure
+    pinSpacing: false,           // optional, remove extra spacing
+    onEnter: () => console.log("Pin started"),
+    onLeave: () => console.log("Pin ended"),
+    markers: true                // for debugging, can remove in production
+  });
+
+  // Dynamically set `end` relative to parent section
+  const figure = document.querySelector("figure");
+  const parentSection = figure.closest("section");
+  const figureHeight = figure.offsetHeight;
+  const parentBottom = parentSection.offsetTop + parentSection.offsetHeight;
+
+  ScrollTrigger.create({
+    trigger: figure,
+    scroller: "#viewport",
+    start: "bottom bottom",
+    end: () => `+=${parentBottom - figure.getBoundingClientRect().bottom}`,
+    pin: figure,
+    pinSpacing: false,
+    markers: true
+  });
+
+  const parallaxSection = document.querySelector("section.parallax-section.level1");
+
+  gsap.to(parallaxSection, {
+    backgroundPosition: "50% 80%",  // adjust vertical position for parallax
+    ease: "none",
+    scrollTrigger: {
+      trigger: parallaxSection,
+      scroller: "#viewport",        // your scroll container
+      start: "top bottom",          // when section top enters viewport
+      end: "bottom top",            // when section bottom leaves viewport
+      scrub: true                   // smooth parallax tied to scroll
+    }
+  });
+  }
+  </script>
+      
+</body>
+
+</html>

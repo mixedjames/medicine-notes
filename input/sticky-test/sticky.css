@@ -1,0 +1,13 @@
+.sticky-section figure {
+  border: solid black 1px;
+  background: white;
+}
+
+section.parallax-section.level1 {
+  background-image: url("https://cdn.pixabay.com/photo/2016/03/18/15/02/ufo-1265186_1280.jpg");
+  height: auto;
+
+  color: white;
+  padding-top: 150pt;
+  padding-bottom: 150pt;
+}
