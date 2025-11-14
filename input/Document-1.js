@@ -1,0 +1,1 @@
+console.log("Hello there! This is Document-1.js in the docx directory.");

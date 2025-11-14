@@ -1,0 +1,125 @@
+/**
+ * styles.css
+ * 
+ */
+
+/**
+ * Fonts
+ */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+/*****************************
+ * Global Styles             
+ *****************************/
+
+ * {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+:root {
+  --base-font-size: 14pt;
+  --header-bg-color: #005cca;
+  --header-fg-color: white;
+}
+
+/*****************************
+ * Viewport Container Styles *
+ */
+.viewport-container-outer {
+  width: 100%;
+  height: 100%;
+  container: containment / size;
+
+  background-color:black;
+}
+
+.viewport-container-outer > .viewport-container-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@container containment (aspect-ratio < 9 / 16) {
+  .viewport-container-outer > .viewport-container-inner {
+    flex-direction: row;
+  }
+}
+
+.viewport {
+  background-color: white;
+  aspect-ratio: 9 / 16;
+  flex-grow: 1;
+
+  overflow: auto;
+}
+
+/*****************************
+ * Page Content Styles     
+ *****************************/
+
+ /*
+
+  Important: don't set padding or margin on the viewport, because most direct children have
+  height: 100%, which would cause overflow issues.
+  */
+.viewport {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: var(--base-font-size);
+  line-height: 1.5;
+
+}
+
+.viewport header {
+  min-height: 100%;
+  padding: 1em;
+
+  background-color: var(--header-bg-color);
+  color: var(--header-fg-color);
+}
+
+.viewport header * {
+  padding-bottom: 1em;
+}
+
+.viewport header .title {
+  text-align: center;
+  font-size: 300%;
+  font-weight: normal;
+  letter-spacing: 0.05em;
+
+  padding-top: 1em;
+}
+
+.viewport header .subtitle {
+  text-align: center;
+  font-size: 110%;
+
+  padding-top: 1.5em;
+  padding-bottom: 2em;
+}
+
+.viewport section.level1 {
+  height: 100%;
+  padding: 1em;
+}
+
+.viewport h1, .viewport h2 {
+  font-family: 'EB Garamond', serif;
+  font-size: 200%;
+}
+
+.viewport section.Heading-1-Green {
+  background-color: #6fb200;
+  color: black;
+}
