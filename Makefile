@@ -3,7 +3,7 @@
 # external CSS only, and absolutely no embedded <style> block.
 
 SRC_DIR := input
-OUT_DIR := output/documents
+OUT_DIR := docs/documents
 TEMPLATE := ../build/template.html
 
 # ANSI colors
@@ -26,7 +26,7 @@ all: check $(HTML_FILES)
 	@echo "$(GREEN)✅ All documents processed successfully.$(RESET)"
 
 # Example rule demonstrating usage
-ROOT := output
+ROOT := docs
 
 # Recursive helper: emits one ../ per path component
 define _back_words
