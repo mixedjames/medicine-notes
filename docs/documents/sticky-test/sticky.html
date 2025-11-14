@@ -16,6 +16,8 @@
 
   .sticky-section figure {
     background: papayawhip;
+
+    height: 300px;
   }
 
   section.parallax-section.level1 {
@@ -87,69 +89,119 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="../../js/bootstrap.js" type="module"></script>
+  <script src="../../js/bootstrap.js"></script>
 
     <script type="text/javascript">
   function runController() {
   gsap.registerPlugin(ScrollTrigger);
 
-  (function () {
-    // User-defined bottom margin (in pixels)
-    const bottomMargin = 0; // adjust as needed
+  /**
+   * 
+   * @param {*} options 
+   */
+  function PinToBottom(options) {
 
-    // Select the figure and parent section
-    const figure = document.querySelector("figure");
-    const parentSection = figure.closest("section");
+    const element = document.querySelector(options.element);
+    const section = element.closest("section");
 
-    // --- Step 1: Wrap figure dynamically ---
+    // Wrap element dynamically
     const wrapper = document.createElement("div");
     wrapper.classList.add("pin-wrap");
-    figure.parentNode.insertBefore(wrapper, figure);
-    wrapper.appendChild(figure);
+    element.parentNode.insertBefore(wrapper, element);
+    wrapper.appendChild(element);
 
-    let oldHeight;
+    // Create spacer to maintain layout
+    const spacer = document.createElement("div");
+    spacer.style.height = window.getComputedStyle(element).height;
+    section.appendChild(spacer);
 
-    // --- Step 2: Create pinned ScrollTrigger with bottom margin ---
+    //
     const trigger = ScrollTrigger.create({
       trigger: wrapper,                     // pin the wrapper
       scroller: "#viewport",                // your scroll container
-      start: "bottom bottom-=10em",               // when figure bottom hits viewport bottom
+
+      start: "bottom bottom",               // when figure bottom hits viewport bottom
       end: () => {
-        // distance from figure bottom to parent bottom minus margin
-        const sectionBottom = parentSection.offsetTop + parentSection.offsetHeight;
-        const figureBottom = figure.offsetTop + figure.offsetHeight;
-        return "+=" + (sectionBottom - figureBottom - bottomMargin - figure.offsetHeight);
+        const spacerRect = spacer.getBoundingClientRect();
+        const elementRect = element.getBoundingClientRect();
+        const offset = spacerRect.top - elementRect.top - elementRect.height;
+        return `bottom bottom-=${offset}px`;
       },
+
       pin: wrapper,                         // pin wrapper, not figure
       pinSpacing: false,                     // remove leftover spacing
       pinType: "transform",                  // smooth mobile pinning
       anticipatePin: 1,                       // reduces jump at start
+      markers: true,
       onRefresh: (self) => {
-        oldHeight = self.spacer.style.height;
         self.spacer.style.height = "0px";
       },
     });
 
-    const newSpacer = trigger.spacer.cloneNode(false);
-    parentSection.appendChild(newSpacer);
-    if (oldHeight) {
-      newSpacer.style.height = oldHeight;
-    }
+    RegisterTrigger(trigger);
 
-  })();
+  } // function PinToBottom
 
-  const parallaxSection = document.querySelector("section.parallax-section.level1");
+  function PinToTop(options) {
+    const element = document.querySelector(options.element);
+    const section = element.closest("section");
 
-  gsap.to(parallaxSection, {
-    backgroundPosition: "50% 80%",  // adjust vertical position for parallax
-    ease: "none",
-    scrollTrigger: {
-      trigger: parallaxSection,
-      scroller: "#viewport",        // your scroll container
-      start: "top bottom",          // when section top enters viewport
-      end: "bottom top",            // when section bottom leaves viewport
-      scrub: true                   // smooth parallax tied to scroll
-    }
+    // Wrap element dynamically
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("pin-wrap");
+    element.parentNode.insertBefore(wrapper, element);
+    wrapper.appendChild(element);
+
+    //
+    const trigger = ScrollTrigger.create({
+      trigger: wrapper,                     // pin the wrapper
+      scroller: "#viewport",                // your scroll container
+
+      start: "top top",               // when figure top hits viewport top
+      end: () => {
+        // "top+=100px top"
+        const sectionRect = section.getBoundingClientRect();
+        const elementRect = element.getBoundingClientRect();
+        const offset = sectionRect.bottom - elementRect.top - elementRect.height;
+        return `top+=${offset}px top`;
+      },
+
+      pin: wrapper,                         // pin wrapper, not figure
+      pinSpacing: false,
+      pinType: "transform",                  // smooth mobile pinning
+      anticipatePin: 1,                       // reduces jump at start
+      markers: true,
+    });
+
+    RegisterTrigger(trigger);
+  }
+
+  function ParallaxBG(options) {
+    const element = document.querySelector(options.section);
+
+    gsap.fromTo(
+      element,
+      { backgroundPosition: options.from, },
+      {
+        backgroundPosition: options.to,  // adjust vertical position for parallax
+        ease: "none",
+        scrollTrigger: {
+          trigger: element,
+          scroller: "#viewport",        // your scroll container
+          start: "top bottom",          // when section top enters viewport
+          end: "bottom top",            // when section bottom leaves viewport
+          scrub: true                   // smooth parallax tied to scroll
+        }
+      });
+  }
+
+  PinToBottom({ element: 'figure', });
+  //PinToTop({ element: 'figure', });
+
+  ParallaxBG({
+    section: 'section.parallax-section.level1',
+    from: '0% 0%',
+    to: '50% 80%',
   });
   }
   </script>

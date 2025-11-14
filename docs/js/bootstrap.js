@@ -1,27 +1,44 @@
-window.addEventListener("load", function () {
 
-  gsap.registerPlugin(ScrollTrigger);
+const triggers = [];
 
-  // Setup responsive typography scaling
-  (function () {
-    const viewport = document.querySelector('.viewport');
+function RegisterTrigger(trigger) {
+  triggers.push(trigger);
+}
 
-    const baseViewportWidth = 500;
-    const baseFontSize = parseInt(getComputedStyle(viewport).getPropertyValue('--base-font-size'));
+(function () { /* Module IIFE to avoid scope pollution */
 
-    new ResizeObserver(entries => {
+  window.addEventListener("load", function () {
 
-      entries.forEach(entry => {
-        const scale = entry.contentRect.width / baseViewportWidth;
-        viewport.style.setProperty(
-          '--base-font-size',
-          new CSSUnitValue(baseFontSize * scale, 'pt')
-        );
-      });
+    gsap.registerPlugin(ScrollTrigger);
 
-    }).observe(viewport);
-  })();
+    setupResponsiveTypography();
 
-  runController && runController();
-});
+    runController && runController();
+  });
 
+  function setupResponsiveTypography() {
+      const viewport = document.querySelector('.viewport');
+
+      const baseViewportWidth = 500;
+      const baseFontSize = parseInt(getComputedStyle(viewport).getPropertyValue('--base-font-size'));
+
+      new ResizeObserver(entries => {
+
+        entries.forEach(entry => {
+          const scale = entry.contentRect.width / baseViewportWidth;
+          viewport.style.setProperty(
+            '--base-font-size',
+            new CSSUnitValue(baseFontSize * scale, 'pt')
+          );
+
+          console.log(`Resizing viewport for responsive typography scaling (scale=${scale.toFixed(2)})`);
+        });
+
+        triggers.forEach(trigger => {
+          ScrollTrigger.refresh();
+        });
+
+      }).observe(viewport);
+  }
+
+})(); /* End IIFE */

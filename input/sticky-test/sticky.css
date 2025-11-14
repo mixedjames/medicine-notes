@@ -4,6 +4,8 @@ section.sticky-section.level1 {
 
 .sticky-section figure {
   background: papayawhip;
+
+  height: 300px;
 }
 
 section.parallax-section.level1 {

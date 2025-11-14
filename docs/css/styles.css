@@ -62,6 +62,8 @@ body {
   flex-grow: 1;
 
   overflow: auto;
+
+  position: relative;
 }
 
 /*****************************
@@ -122,4 +124,8 @@ body {
 .viewport section.Heading-1-Green {
   background-color: #6fb200;
   color: black;
+}
+
+.viewport p {
+  margin-bottom: 1.5em;
 }
