@@ -1,0 +1,81 @@
+############################################
+# OS-SPECIFIC JUNK
+############################################
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# macOS folder attributes
+*.icloud
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.nfs*
+
+############################################
+# NODE / JAVASCRIPT
+############################################
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+.pnpm-store/
+.vscode-test/
+
+# Build outputs
+dist/
+build/
+.cache/
+.temp/
+temp/
+coverage/
+*.tsbuildinfo
+
+# Environments
+.env
+.env.*.local
+.env.local
+
+############################################
+# VISUAL STUDIO CODE
+############################################
+
+.vscode/
+.history/
+*.code-workspace
+
+############################################
+# WEB DEV ARTIFACTS
+############################################
+
+# Dependency caches
+.bower/
+jspm_packages/
+
+############################################
+# MISC / GENERAL
+############################################
+
+# Logs
+*.log
+
+# IDE / Editor backups
+*.swp
+*.swo
+

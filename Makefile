@@ -3,6 +3,7 @@
 # external CSS only, and absolutely no embedded <style> block.
 
 SRC_DIR := input
+ROOT := docs
 OUT_DIR := docs/documents
 TEMPLATE := ../build/template.html
 
@@ -24,9 +25,6 @@ HTML_FILES := $(DOCX_FILES:$(SRC_DIR)/%.docx=$(OUT_DIR)/%.html)
 # Default target
 all: check $(HTML_FILES)
 	@echo "$(GREEN)✅ All documents processed successfully.$(RESET)"
-
-# Example rule demonstrating usage
-ROOT := docs
 
 # Recursive helper: emits one ../ per path component
 define _back_words
