@@ -19,7 +19,7 @@ function RegisterTrigger(trigger) {
   function setupResponsiveTypography() {
       const viewport = document.querySelector('.viewport');
 
-      const baseViewportWidth = 500;
+      const baseViewportWidth = 450;
       const baseFontSize = parseInt(getComputedStyle(viewport).getPropertyValue('--base-font-size'));
 
       new ResizeObserver(entries => {
