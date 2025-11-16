@@ -6,14 +6,14 @@
 /**
  * Fonts
  */
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import url('blueprint.css');
 
 /*****************************
  * Global Styles             
  *****************************/
 
- * {
+* {
   margin: 0;
   box-sizing: border-box;
 }
@@ -26,8 +26,6 @@ body {
 
 :root {
   --base-font-size: 14pt;
-  --header-bg-color: #005cca;
-  --header-fg-color: white;
 }
 
 /*****************************
@@ -37,11 +35,9 @@ body {
   width: 100%;
   height: 100%;
   container: containment / size;
-
-  background-color:black;
 }
 
-.viewport-container-outer > .viewport-container-inner {
+.viewport-container-outer>.viewport-container-inner {
   width: 100%;
   height: 100%;
   display: flex;
@@ -51,7 +47,7 @@ body {
 }
 
 @container containment (aspect-ratio < 9 / 16) {
-  .viewport-container-outer > .viewport-container-inner {
+  .viewport-container-outer>.viewport-container-inner {
     flex-direction: row;
   }
 }
@@ -70,7 +66,7 @@ body {
  * Page Content Styles     
  *****************************/
 
- /*
+/*
 
   Important: don't set padding or margin on the viewport, because most direct children have
   height: 100%, which would cause overflow issues.
@@ -85,9 +81,6 @@ body {
 .viewport header {
   min-height: 100%;
   padding: 1em;
-
-  background-color: var(--header-bg-color);
-  color: var(--header-fg-color);
 }
 
 .viewport header * {
@@ -116,16 +109,129 @@ body {
   padding: 1em;
 }
 
-.viewport h1, .viewport h2 {
+/*
+.viewport h1,
+.viewport h2 {
   font-family: 'EB Garamond', serif;
   font-size: 200%;
 }
+  */
 
 .viewport section.Heading-1-Green {
-  background-color: #6fb200;
-  color: black;
 }
 
 .viewport p {
   margin-bottom: 1.5em;
+}
+
+/*****************************
+ * "Petra" theme
+ *
+ * Key colours are:
+ * - Blue:  #4285f4
+ * - Brown: #5C2018
+ * - Brick: #BC4639
+ * - Stone: #D4A59A
+ * - Sand:  #F3E0DC
+ *****************************/
+
+body.theme-petra {
+  --petra-blue: #4285f4;
+  --petra-brown: #5C2018;
+  --petra-brick: #BC4639;
+  --petra-stone: #D4A59A;
+  --petra-sand: #F3E0DC;
+}
+
+body.theme-petra .viewport header {
+  background-color: var(--petra-brick);
+  color: var(--petra-sand);
+}
+
+body.theme-petra .viewport section {
+  background-color: var(--petra-sand);
+  color: var(--petra-brown);
+}
+
+/*****************************
+ * "Fuel" theme
+ *
+ * Key colours are:
+ * - Blue:    #244855
+ * - Red:     #E64833
+ * - Brown:   #874F41
+ * - Grey:    #90AEAD
+ * - Sand:    #FBE9D0
+ *****************************/
+
+body.theme-fuel {
+  --fuel-blue: #244855;
+  --fuel-red: #E64833;
+  --fuel-brown: #874F41;
+  --fuel-grey: #90AEAD;
+  --fuel-sand: #FBE9D0;
+}
+
+body.theme-fuel .viewport header {
+  background-color: var(--fuel-blue);
+  color: var(--fuel-sand);
+}
+
+body.theme-fuel .viewport section {
+  background-color: var(--fuel-sand);
+  color: var(--fuel-brown);
+}
+
+/*****************************
+ * "Future" theme
+ *
+ * Key colours are:
+ * - Dark grey: #2C3531
+ * - Teal:      #116466
+ * - Stone:     #D9B08C
+ * - Sand:      #FFCB9A
+ * - Cool mint: #D1E8E2
+ *****************************/
+
+body.theme-future {
+  --future-dark-grey: #2C3531;
+  --future-teal: #116466;
+  --future-stone: #D9B08C;
+  --future-sand: #FFCB9A;
+  --future-cool-mint: #D1E8E2;
+}
+
+body.theme-future .viewport header {
+  background-color: var(--future-dark-grey);
+  color: var(--future-cool-mint);
+}
+
+body.theme-future .viewport section {
+  background-color: var(--future-cool-mint);
+  color: var(--future-dark-grey);
+}
+
+/*****************************
+ * "Midnight blue" theme
+ *****************************/
+
+body.theme-midnight-blue {
+  --midnight: #0A1A2F;
+  --atmo-blue: #163859;
+  --blueprint-cyan: #6FAEDB;
+  --antique-gold: #D3B47F;
+  --signal-orange: #FF8B3D;
+
+  --light-bg: #F3F7FA;
+  --light-text: #243748;
+  --light-bluewash: #DCE6F3;
+}
+
+body.theme-midnight-blue .viewport header {
+  background-color: var(--midnight);
+  color: var(--blueprint-cyan);
+}
+
+body.theme-midnight-blue .viewport header h1.title {
+  color: var(--antique-gold);
 }

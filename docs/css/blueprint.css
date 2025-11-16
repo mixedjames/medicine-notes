@@ -1,0 +1,176 @@
+/* Blueprint Theme (theme-blueprint)
+   Applied by adding class="theme-blueprint" to <body>
+   This file will grow piece-by-piece as we build and debug.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* ------------------------------------------------------
+   THEME ROOT / COLOR TOKENS
+   ------------------------------------------------------ */
+body.theme-blueprint {
+  /* Core palette */
+  --deep-midnight: #0A1A2F;
+  --muted-atmospheric: #163859;
+  --blueprint-cyan: #6FAEDB;
+  --antique-gold: #D3B47F;
+  --signal-orange: #FF8B3D;
+
+  /* Base text */
+  --text-primary: rgba(255,255,255,0.92);
+  --text-secondary: rgba(255,255,255,0.65);
+
+  /* Backgrounds */
+  --bg-main: var(--deep-midnight);
+  --bg-surface: #0f233b;
+
+  /* Utility */
+  --border-soft: 1px solid rgba(111,174,219,0.15);
+  --blueprint-grid-color: rgba(111,174,219,0.08);
+
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-family: Inter, ui-sans-serif, system-ui;
+}
+
+.theme-blueprint .viewport {
+  font-family: 'Inter', ui-sans-serif, system-ui;
+}
+
+.theme-blueprint .viewport h1,
+.theme-blueprint .viewport h2,
+.theme-blueprint .viewport h3,
+.theme-blueprint .viewport h4,
+.theme-blueprint .viewport h5
+ {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+}
+
+.theme-blueprint .viewport h1 {
+  font-size: 170%;
+
+  margin-bottom: 1em;
+  padding-left: 0.5em;
+
+  border-left: solid 0.3em var(--deep-midnight);
+}
+
+.theme-blueprint .viewport h2 {
+  font-size: 140%;
+  margin-bottom: 1em;
+}
+
+/* ------------------------------------------------------
+   HEADER (Dark mode by default)
+   ------------------------------------------------------ */
+.theme-blueprint header {
+  background: var(--deep-midnight);
+  color: var(--text-primary);
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.theme-blueprint header .title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--antique-gold);
+  letter-spacing: 0.4px;
+}
+
+
+/* ------------------------------------------------------
+   SECTION (Light Mode Defaults)
+   ------------------------------------------------------ */
+
+/* Level 1 = Page */
+.theme-blueprint section.level1 {
+  background: #f5f7fa;
+  color: #0A1A2F;
+  padding: 12px;
+  margin: 0;
+  border: none;
+}
+
+/* Level 2 = Light Mode (Light Card style) */
+.theme-blueprint section.level2 {
+  background: #ffffff; /* clean light card */
+  color: #0A1A2F;
+  padding: 16px;
+  margin-top: 16px;
+  border-radius: 6px;
+
+  /* subtle border */
+  border: 1px solid rgba(111,174,219,0.25);
+
+  /* soft shadow for lift */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06),
+              0 1px 2px rgba(0,0,0,0.03);
+}
+
+
+/* Optional dark mode variant for Level 1 pages */
+.theme-blueprint section.level1.heading-1-dark {
+  background: var(--deep-midnight);
+  color: var(--text-primary);
+}
+
+/* Other levels keep previous behavior (can refine later) */
+/* Level 2 = Highlight (Midnight UI — gradient background)
+   Applied automatically when inside a dark-mode page */
+/* Level 2 = Dark Mode (Blueprint Micro‑Grid Panel Style)
+   Replaces the previous gradient background */
+.theme-blueprint section.heading-1-dark section.level2,
+.theme-blueprint section.level1.heading-1-dark section.level2 {
+  background: #163859; /* muted atmospheric blue – lighter blueprint panel */
+  color: var(--text-primary);
+  padding: 16px;
+  margin-top: 16px;
+  border-radius: 6px;
+
+  /* blueprint micro-grid texture (subtle) */
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+
+  /* cleaner blueprint border — cyan tone */
+  border: 1px solid rgba(111,174,219,0.35);
+
+  /* subtle lift shadow */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+
+  /* no left accent bar in this variant */
+  border-left: none;
+}
+
+/* Headings inside dark-mode sections use distinct blueprint styling */
+.theme-blueprint section.heading-1-dark h1 {
+  color: var(--antique-gold);      /* primary gold */
+  letter-spacing: 0.5px;
+  border-color: var(--antique-gold);
+}
+
+.theme-blueprint section.heading-1-dark h2 {
+  color: var(--blueprint-cyan);     /* cyan accent */
+  letter-spacing: 0.3px;
+}
+
+.theme-blueprint section.heading-1-dark h3 {
+  color: var(--muted-atmospheric);  /* muted deep blue */
+  letter-spacing: 0.2px;
+}
+
+.theme-blueprint section.heading-1-dark h4,
+.theme-blueprint section.heading-1-dark h5,
+.theme-blueprint section.heading-1-dark h6 {
+  color: var(--text-secondary);     /* softer white */
+  letter-spacing: 0.1px;
+}
+
+.theme-blueprint section.level3 {
+  background: #ecf2f8;
+  border-left: 2px dotted var(--blueprint-cyan);
+  padding: 12px;
+}
