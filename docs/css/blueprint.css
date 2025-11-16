@@ -109,7 +109,6 @@ body.theme-blueprint {
               0 1px 2px rgba(0,0,0,0.03);
 }
 
-
 /* Optional dark mode variant for Level 1 pages */
 .theme-blueprint section.level1.heading-1-dark {
   background: var(--deep-midnight);
@@ -173,4 +172,112 @@ body.theme-blueprint {
   background: #ecf2f8;
   border-left: 2px dotted var(--blueprint-cyan);
   padding: 12px;
+}
+
+/* Numbered lists in light mode */
+.theme-blueprint section ol {
+  counter-reset: list-counter;
+  margin-left: 1em; /* added left indent */
+  margin-top: 8px;
+}
+
+.theme-blueprint section ol li {
+  list-style: none;
+  counter-increment: list-counter;
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.theme-blueprint section ol li::before {
+  content: counter(list-counter);
+  font-weight: bold;
+  font-size: 1.1em;
+  color: var(--blueprint-cyan);
+  position: absolute;
+  left: -2em;
+}
+
+/* Numbered lists in dark-mode sections */
+.theme-blueprint section.heading-1-dark section ol,
+.theme-blueprint section.level1.heading-1-dark section ol {
+  counter-reset: list-counter;
+  margin-left: 2em;
+  margin-top: 8px;
+  color: var(--text-primary);
+}
+
+.theme-blueprint section.heading-1-dark section ol li::before,
+.theme-blueprint section.level1.heading-1-dark section ol li::before {
+  content: counter(list-counter);
+  font-weight: bold;
+  font-size: 1.1em;
+  color: var(--antique-gold); /* dark-mode number color */
+  position: absolute;
+  left: -2em;
+}
+
+/* Light-mode tables */
+.theme-blueprint section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-size: 0.95em;
+  color: #0A1A2F;
+  background: #ffffff;
+  border: 1px solid rgba(111,174,219,0.25);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.theme-blueprint section thead th {
+  background: #f0f4f8;
+  font-weight: 700;
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid rgba(111,174,219,0.25);
+}
+
+.theme-blueprint section tbody td {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(111,174,219,0.1);
+}
+
+.theme-blueprint section tbody tr:nth-child(even) {
+  background: rgba(111,174,219,0.05); /* subtle alternate row highlight */
+}
+
+/* Dark-mode tables */
+.theme-blueprint section.heading-1-dark table,
+.theme-blueprint section.level1.heading-1-dark table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-size: 0.95em;
+  color: var(--text-primary);
+  background: #163859; /* muted atmospheric blue */
+  border: 1px solid rgba(111,174,219,0.35);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Dark-mode tables with softer header contrast */
+.theme-blueprint section.heading-1-dark thead th,
+.theme-blueprint section.level1.heading-1-dark thead th {
+  background: #163859; /* softer muted atmospheric blue */
+  font-weight: 700;
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid rgba(111,174,219,0.35);
+  color: var(--antique-gold);
+}
+
+.theme-blueprint section.heading-1-dark tbody td,
+.theme-blueprint section.level1.heading-1-dark tbody td {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(111,174,219,0.2);
+}
+
+.theme-blueprint section.heading-1-dark tbody tr:nth-child(even),
+.theme-blueprint section.level1.heading-1-dark tbody tr:nth-child(even) {
+  background: rgba(111,174,219,0.05); /* subtle alternate row highlight */
 }
