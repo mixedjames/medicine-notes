@@ -2,7 +2,7 @@ define(
   ['gsap', 'ScrollTrigger', 'effect-broker'],
   function (gsapModule, ScrollTriggerModule, EffectBroker) {
 
-    function ParallaxBG(options) {
+    return function ParallaxBG(options) {
       const element = document.querySelector(options.section);
 
       gsap.fromTo(
