@@ -1,6 +1,6 @@
 define(
-  ['gsap', 'ScrollTrigger', 'effect-broker'],
-  function (gsapModule, ScrollTriggerModule, EffectBroker) {
+  ['gsap', 'ScrollTrigger'],
+  function (gsapModule, ScrollTriggerModule) {
 
     /**
      * 
@@ -39,15 +39,10 @@ define(
         pinSpacing: false,                     // remove leftover spacing
         pinType: "transform",                  // smooth mobile pinning
         anticipatePin: 1,                       // reduces jump at start
-        markers: true,
-        onRefresh: (self) => {
-          self.spacer.style.height = "0px";
-        },
+        markers: false,
       });
 
-      EffectBroker.registerEffect(() => {
-        trigger.refresh();
-      });
+      trigger.spacer.style.maxHeight = "0px";
 
     }; // function PinToBottom
 

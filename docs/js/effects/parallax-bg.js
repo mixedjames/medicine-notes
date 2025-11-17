@@ -1,13 +1,17 @@
 define(
-  ['gsap', 'ScrollTrigger', 'effect-broker'],
-  function (gsapModule, ScrollTriggerModule, EffectBroker) {
+  ['gsap', 'ScrollTrigger'],
+  function (gsapModule, ScrollTriggerModule) {
 
     return function ParallaxBG(options) {
+
+      const viewport = document.getElementById('viewport');
       const element = document.querySelector(options.section);
 
-      gsap.fromTo(
+      const animation = gsap.fromTo(
         element,
-        { backgroundPosition: options.from, },
+        {
+          backgroundPosition: options.from,
+        },
         {
           backgroundPosition: options.to,  // adjust vertical position for parallax
           ease: "none",
@@ -16,11 +20,14 @@ define(
             scroller: "#viewport",        // your scroll container
             start: "top bottom",          // when section top enters viewport
             end: "bottom top",            // when section bottom leaves viewport
-            scrub: true                   // smooth parallax tied to scroll
+            scrub: true,                  // smooth parallax tied to scroll
+            markers: true,
           }
-        });
+        }
+      );
 
-        
+      console.log(animation);
+
     }
   }
 ); // end module function

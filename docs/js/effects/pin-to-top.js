@@ -1,6 +1,6 @@
 define(
-  ['gsap', 'ScrollTrigger', 'effect-broker'],
-  function (gsapModule, ScrollTriggerModule, EffectBroker) {
+  ['gsap', 'ScrollTrigger'],
+  function (gsapModule, ScrollTriggerModule) {
 
     return function PinToTop(options) {
       const element = document.querySelector(options.element);
@@ -32,11 +32,7 @@ define(
         anticipatePin: 1,                       // reduces jump at start
         markers: true,
       });
-
-      EffectBroker.registerEffect(() => {
-        trigger.refresh();
-      });
-
+      
     }
 
   }

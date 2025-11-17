@@ -1,6 +1,6 @@
 define(
-  ['effect-broker'],
-  function (EffectBroker) {
+  [],
+  function (EffetBroker) {
 
     OnDOMReady(setupResponsiveTypography);
 
@@ -22,7 +22,7 @@ define(
 
         });
 
-        EffectBroker.notifyAllEffects('typography-resize');
+        ScrollTrigger.refresh();
 
       }).observe(viewport);
     }
