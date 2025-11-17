@@ -17,16 +17,16 @@ body.theme-blueprint {
   --signal-orange: #FF8B3D;
 
   /* Base text */
-  --text-primary: rgba(255,255,255,0.92);
-  --text-secondary: rgba(255,255,255,0.65);
+  --text-primary: rgba(255, 255, 255, 0.92);
+  --text-secondary: rgba(255, 255, 255, 0.65);
 
   /* Backgrounds */
   --bg-main: var(--deep-midnight);
   --bg-surface: #0f233b;
 
   /* Utility */
-  --border-soft: 1px solid rgba(111,174,219,0.15);
-  --blueprint-grid-color: rgba(111,174,219,0.08);
+  --border-soft: 1px solid rgba(111, 174, 219, 0.15);
+  --blueprint-grid-color: rgba(111, 174, 219, 0.08);
 
   background: var(--bg-main);
   color: var(--text-primary);
@@ -41,8 +41,7 @@ body.theme-blueprint {
 .theme-blueprint .viewport h2,
 .theme-blueprint .viewport h3,
 .theme-blueprint .viewport h4,
-.theme-blueprint .viewport h5
- {
+.theme-blueprint .viewport h5 {
   font-family: 'EB Garamond', serif;
   font-weight: normal;
 }
@@ -68,17 +67,39 @@ body.theme-blueprint {
   background: var(--deep-midnight);
   color: var(--text-primary);
   padding: 12px 16px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.viewport header * {
+  padding-bottom: 1em;
 }
 
 .theme-blueprint header .title {
   margin: 0;
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 250%;
+  font-weight: normal;
   color: var(--antique-gold);
-  letter-spacing: 0.4px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  border-left: none;
+  padding: 0;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
+/* Header subtitle styling (dark mode by default) */
+.theme-blueprint header .subtitle {
+  color: var(--blueprint-cyan);
+  font-family: 'EB Garamond', serif;
+  text-align: center;
+  font-size: 130%;
+  font-weight: normal;
+  font-style: italic;
+  display: block;
+
+  padding-top: 1.5em;
+  padding-bottom: 2em;
+}
 
 /* ------------------------------------------------------
    SECTION (Light Mode Defaults)
@@ -95,18 +116,19 @@ body.theme-blueprint {
 
 /* Level 2 = Light Mode (Light Card style) */
 .theme-blueprint section.level2 {
-  background: #ffffff; /* clean light card */
+  background: #ffffff;
+  /* clean light card */
   color: #0A1A2F;
   padding: 16px;
   margin-top: 16px;
   border-radius: 6px;
 
   /* subtle border */
-  border: 1px solid rgba(111,174,219,0.25);
+  border: 1px solid rgba(111, 174, 219, 0.25);
 
   /* soft shadow for lift */
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06),
-              0 1px 2px rgba(0,0,0,0.03);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06),
+    0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
 /* Optional dark mode variant for Level 1 pages */
@@ -122,7 +144,8 @@ body.theme-blueprint {
    Replaces the previous gradient background */
 .theme-blueprint section.heading-1-dark section.level2,
 .theme-blueprint section.level1.heading-1-dark section.level2 {
-  background: #163859; /* muted atmospheric blue – lighter blueprint panel */
+  background: #163859;
+  /* muted atmospheric blue – lighter blueprint panel */
   color: var(--text-primary);
   padding: 16px;
   margin-top: 16px;
@@ -130,15 +153,15 @@ body.theme-blueprint {
 
   /* blueprint micro-grid texture (subtle) */
   background-image:
-    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 20px 20px;
 
   /* cleaner blueprint border — cyan tone */
-  border: 1px solid rgba(111,174,219,0.35);
+  border: 1px solid rgba(111, 174, 219, 0.35);
 
   /* subtle lift shadow */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 
   /* no left accent bar in this variant */
   border-left: none;
@@ -146,25 +169,29 @@ body.theme-blueprint {
 
 /* Headings inside dark-mode sections use distinct blueprint styling */
 .theme-blueprint section.heading-1-dark h1 {
-  color: var(--antique-gold);      /* primary gold */
+  color: var(--antique-gold);
+  /* primary gold */
   letter-spacing: 0.5px;
   border-color: var(--antique-gold);
 }
 
 .theme-blueprint section.heading-1-dark h2 {
-  color: var(--blueprint-cyan);     /* cyan accent */
+  color: var(--blueprint-cyan);
+  /* cyan accent */
   letter-spacing: 0.3px;
 }
 
 .theme-blueprint section.heading-1-dark h3 {
-  color: var(--muted-atmospheric);  /* muted deep blue */
+  color: var(--muted-atmospheric);
+  /* muted deep blue */
   letter-spacing: 0.2px;
 }
 
 .theme-blueprint section.heading-1-dark h4,
 .theme-blueprint section.heading-1-dark h5,
 .theme-blueprint section.heading-1-dark h6 {
-  color: var(--text-secondary);     /* softer white */
+  color: var(--text-secondary);
+  /* softer white */
   letter-spacing: 0.1px;
 }
 
@@ -174,10 +201,16 @@ body.theme-blueprint {
   padding: 12px;
 }
 
+/***
+ * Numbered list styles
+ **/
+
+
 /* Numbered lists in light mode */
 .theme-blueprint section ol {
   counter-reset: list-counter;
-  margin-left: 1em; /* added left indent */
+  margin-left: 1em;
+  /* added left indent */
   margin-top: 8px;
 }
 
@@ -211,9 +244,65 @@ body.theme-blueprint {
   content: counter(list-counter);
   font-weight: bold;
   font-size: 1.1em;
-  color: var(--antique-gold); /* dark-mode number color */
+  color: var(--antique-gold);
+  /* dark-mode number color */
   position: absolute;
   left: -2em;
+}
+
+/* Unordered lists — light mode */
+.theme-blueprint section ul {
+  padding-left: 2em;
+  margin-top: 8px;
+}
+
+.theme-blueprint section ul li {
+  list-style: none;
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.theme-blueprint section ul li::before {
+  content: "•";
+  font-weight: bold;
+  font-size: 1.1em;
+  color: var(--blueprint-cyan);
+  position: absolute;
+  left: -2em;
+}
+
+/* Unordered lists — dark mode */
+.theme-blueprint section.heading-1-dark ul,
+.theme-blueprint section.level1.heading-1-dark ul {
+  padding-left: 2em;
+  margin-top: 8px;
+  color: var(--text-primary);
+}
+
+.theme-blueprint section.heading-1-dark ul li::before,
+.theme-blueprint section.level1.heading-1-dark ul li::before {
+  content: "•";
+  font-weight: bold;
+  font-size: 1.1em;
+  color: var(--antique-gold);
+  position: absolute;
+  left: -2em;
+}
+
+/*** ------------------------------------------------------
+   TABLE STYLES
+   ------------------------------------------------------ */
+
+/* Dark-mode tables with softer header contrast */
+.theme-blueprint section.heading-1-dark thead th,
+.theme-blueprint section.level1.heading-1-dark thead th {
+  background: #163859;
+  /* softer muted atmospheric blue */
+  font-weight: 700;
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid rgba(111, 174, 219, 0.35);
+  color: var(--antique-gold);
 }
 
 /* Light-mode tables */
@@ -224,7 +313,7 @@ body.theme-blueprint {
   font-size: 0.95em;
   color: #0A1A2F;
   background: #ffffff;
-  border: 1px solid rgba(111,174,219,0.25);
+  border: 1px solid rgba(111, 174, 219, 0.25);
   border-radius: 6px;
   overflow: hidden;
 }
@@ -234,16 +323,17 @@ body.theme-blueprint {
   font-weight: 700;
   padding: 8px 12px;
   text-align: left;
-  border-bottom: 1px solid rgba(111,174,219,0.25);
+  border-bottom: 1px solid rgba(111, 174, 219, 0.25);
 }
 
 .theme-blueprint section tbody td {
   padding: 8px 12px;
-  border-bottom: 1px solid rgba(111,174,219,0.1);
+  border-bottom: 1px solid rgba(111, 174, 219, 0.1);
 }
 
 .theme-blueprint section tbody tr:nth-child(even) {
-  background: rgba(111,174,219,0.05); /* subtle alternate row highlight */
+  background: rgba(111, 174, 219, 0.05);
+  /* subtle alternate row highlight */
 }
 
 /* Dark-mode tables */
@@ -254,8 +344,9 @@ body.theme-blueprint {
   margin-top: 16px;
   font-size: 0.95em;
   color: var(--text-primary);
-  background: #163859; /* muted atmospheric blue */
-  border: 1px solid rgba(111,174,219,0.35);
+  background: #163859;
+  /* muted atmospheric blue */
+  border: 1px solid rgba(111, 174, 219, 0.35);
   border-radius: 6px;
   overflow: hidden;
 }
@@ -263,21 +354,23 @@ body.theme-blueprint {
 /* Dark-mode tables with softer header contrast */
 .theme-blueprint section.heading-1-dark thead th,
 .theme-blueprint section.level1.heading-1-dark thead th {
-  background: #163859; /* softer muted atmospheric blue */
+  background: #163859;
+  /* softer muted atmospheric blue */
   font-weight: 700;
   padding: 8px 12px;
   text-align: left;
-  border-bottom: 1px solid rgba(111,174,219,0.35);
+  border-bottom: 1px solid rgba(111, 174, 219, 0.35);
   color: var(--antique-gold);
 }
 
 .theme-blueprint section.heading-1-dark tbody td,
 .theme-blueprint section.level1.heading-1-dark tbody td {
   padding: 8px 12px;
-  border-bottom: 1px solid rgba(111,174,219,0.2);
+  border-bottom: 1px solid rgba(111, 174, 219, 0.2);
 }
 
 .theme-blueprint section.heading-1-dark tbody tr:nth-child(even),
 .theme-blueprint section.level1.heading-1-dark tbody tr:nth-child(even) {
-  background: rgba(111,174,219,0.05); /* subtle alternate row highlight */
+  background: rgba(111, 174, 219, 0.05);
+  /* subtle alternate row highlight */
 }

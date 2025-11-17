@@ -72,10 +72,8 @@ body {
   height: 100%, which would cause overflow issues.
   */
 .viewport {
-  font-family: 'Noto Sans', sans-serif;
   font-size: var(--base-font-size);
   line-height: 1.5;
-
 }
 
 .viewport header {
@@ -83,25 +81,8 @@ body {
   padding: 1em;
 }
 
-.viewport header * {
-  padding-bottom: 1em;
-}
-
-.viewport header .title {
-  text-align: center;
-  font-size: 300%;
-  font-weight: normal;
-  letter-spacing: 0.05em;
-
-  padding-top: 1em;
-}
 
 .viewport header .subtitle {
-  text-align: center;
-  font-size: 110%;
-
-  padding-top: 1.5em;
-  padding-bottom: 2em;
 }
 
 .viewport section.level1 {
