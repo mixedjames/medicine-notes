@@ -1,18 +1,69 @@
-/**
- * styles.css
- * 
- */
+/*
+----------------------------------------------------------------------
+styles.css — STRUCTURE OVERVIEW (Maintenance Notes)
 
-/**
- * Fonts
- */
+This stylesheet defines layout and content rules for the viewport
+system used by the Blueprint theme. It is intentionally minimal and
+structural, with visual styling delegated to blueprint.css.
 
+SECTION GUIDE:
+
+1. Imports
+   - Pulls in the Blueprint theme stylesheet.
+   - This file is intended to layer structural rules *on top of* the
+     theme, not override its visual tokens.
+
+2. Global Resets & Root Variables
+   - Basic margin reset and box-sizing.
+   - html/body full-size constraints.
+   - Root-level variable (--base-font-size) that controls viewport text
+     scale consistently.
+
+3. Viewport Container Layout
+   - `.viewport-container-outer` and `.viewport-container-inner` define
+     the responsive container system.
+   - Uses CSS Container Queries to switch layout direction based on the
+     viewport’s aspect ratio (portrait → column, landscape → row).
+   - This section is purely structural; no visual styling here.
+
+4. Viewport Base Styles
+   - The `.viewport` block has been *merged* (Option A1) from the
+     original separated blocks.
+   - Contains the physical viewport’s core properties: aspect-ratio,
+     overflow handling, sizing, and base typography.
+   - Important: Padding/margin is intentionally NOT applied here to
+     avoid interference with children using height: 100%.
+
+5. Page Content Rules
+   - Header and section layout rules inside the viewport.
+   - Light, minimal spacing and text flow adjustments.
+   - Placeholder selectors (e.g., `.Heading-1-Green`) kept for future
+     extension but currently do not apply styling.
+
+MAINTENANCE PHILOSOPHY:
+
+- Keep structural rules here (sizing, flow, layout).
+- Keep theme/visual rules in blueprint.css unless there is a very clear
+  reason to override them.
+- Maintain the ordering: imports → global resets → containers →
+  viewport → page content.
+- Ensure any new padding rules do NOT break the height:100% model of
+  child elements.
+- Avoid duplicating visual rules that belong in the theme layer.
+
+This file should remain small and predictable — treat it like the
+“layout shell” for the Blueprint viewport.
+----------------------------------------------------------------------
+*/
+
+/* ------------------------------------------------------
+   Imports / Fonts
+   ------------------------------------------------------ */
 @import url('blueprint.css');
 
-/*****************************
- * Global Styles             
- *****************************/
-
+/* ------------------------------------------------------
+   Global Resets & Root Variables
+   ------------------------------------------------------ */
 * {
   margin: 0;
   box-sizing: border-box;
@@ -28,16 +79,16 @@ body {
   --base-font-size: 14pt;
 }
 
-/*****************************
- * Viewport Container Styles *
- */
+/* ------------------------------------------------------
+   Viewport Container Layout
+   ------------------------------------------------------ */
 .viewport-container-outer {
   width: 100%;
   height: 100%;
   container: containment / size;
 }
 
-.viewport-container-outer>.viewport-container-inner {
+.viewport-container-outer > .viewport-container-inner {
   width: 100%;
   height: 100%;
   display: flex;
@@ -47,40 +98,35 @@ body {
 }
 
 @container containment (aspect-ratio < 9 / 16) {
-  .viewport-container-outer>.viewport-container-inner {
+  .viewport-container-outer > .viewport-container-inner {
     flex-direction: row;
   }
 }
 
+/* ------------------------------------------------------
+   Viewport Base Styles (merged from two blocks)
+   ------------------------------------------------------ */
 .viewport {
   background-color: white;
   aspect-ratio: 9 / 16;
   flex-grow: 1;
-
   overflow: auto;
-
   position: relative;
-}
 
-/*****************************
- * Page Content Styles     
- *****************************/
-
-/*
-
-  Important: don't set padding or margin on the viewport, because most direct children have
-  height: 100%, which would cause overflow issues.
-  */
-.viewport {
   font-size: var(--base-font-size);
   line-height: 1.5;
 }
+
+/* ------------------------------------------------------
+   Page Content
+   ------------------------------------------------------ */
+/* Important: do not set padding/margin on .viewport itself
+   because many direct children use height: 100%. */
 
 .viewport header {
   min-height: 100%;
   padding: 1em;
 }
-
 
 .viewport header .subtitle {
 }
@@ -90,129 +136,9 @@ body {
   padding: 1em;
 }
 
-/*
-.viewport h1,
-.viewport h2 {
-  font-family: 'EB Garamond', serif;
-  font-size: 200%;
-}
-  */
-
 .viewport section.Heading-1-Green {
 }
 
 .viewport p {
   margin-bottom: 1.5em;
-}
-
-/*****************************
- * "Petra" theme
- *
- * Key colours are:
- * - Blue:  #4285f4
- * - Brown: #5C2018
- * - Brick: #BC4639
- * - Stone: #D4A59A
- * - Sand:  #F3E0DC
- *****************************/
-
-body.theme-petra {
-  --petra-blue: #4285f4;
-  --petra-brown: #5C2018;
-  --petra-brick: #BC4639;
-  --petra-stone: #D4A59A;
-  --petra-sand: #F3E0DC;
-}
-
-body.theme-petra .viewport header {
-  background-color: var(--petra-brick);
-  color: var(--petra-sand);
-}
-
-body.theme-petra .viewport section {
-  background-color: var(--petra-sand);
-  color: var(--petra-brown);
-}
-
-/*****************************
- * "Fuel" theme
- *
- * Key colours are:
- * - Blue:    #244855
- * - Red:     #E64833
- * - Brown:   #874F41
- * - Grey:    #90AEAD
- * - Sand:    #FBE9D0
- *****************************/
-
-body.theme-fuel {
-  --fuel-blue: #244855;
-  --fuel-red: #E64833;
-  --fuel-brown: #874F41;
-  --fuel-grey: #90AEAD;
-  --fuel-sand: #FBE9D0;
-}
-
-body.theme-fuel .viewport header {
-  background-color: var(--fuel-blue);
-  color: var(--fuel-sand);
-}
-
-body.theme-fuel .viewport section {
-  background-color: var(--fuel-sand);
-  color: var(--fuel-brown);
-}
-
-/*****************************
- * "Future" theme
- *
- * Key colours are:
- * - Dark grey: #2C3531
- * - Teal:      #116466
- * - Stone:     #D9B08C
- * - Sand:      #FFCB9A
- * - Cool mint: #D1E8E2
- *****************************/
-
-body.theme-future {
-  --future-dark-grey: #2C3531;
-  --future-teal: #116466;
-  --future-stone: #D9B08C;
-  --future-sand: #FFCB9A;
-  --future-cool-mint: #D1E8E2;
-}
-
-body.theme-future .viewport header {
-  background-color: var(--future-dark-grey);
-  color: var(--future-cool-mint);
-}
-
-body.theme-future .viewport section {
-  background-color: var(--future-cool-mint);
-  color: var(--future-dark-grey);
-}
-
-/*****************************
- * "Midnight blue" theme
- *****************************/
-
-body.theme-midnight-blue {
-  --midnight: #0A1A2F;
-  --atmo-blue: #163859;
-  --blueprint-cyan: #6FAEDB;
-  --antique-gold: #D3B47F;
-  --signal-orange: #FF8B3D;
-
-  --light-bg: #F3F7FA;
-  --light-text: #243748;
-  --light-bluewash: #DCE6F3;
-}
-
-body.theme-midnight-blue .viewport header {
-  background-color: var(--midnight);
-  color: var(--blueprint-cyan);
-}
-
-body.theme-midnight-blue .viewport header h1.title {
-  color: var(--antique-gold);
 }

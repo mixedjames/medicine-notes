@@ -1,44 +1,43 @@
+require.config({
+  paths: {
+    gsap: "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min",
+    ScrollTrigger: "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min"
+  },
 
-const triggers = [];
+  shim: {
+    ScrollTrigger: {
+      deps: ["gsap"],
+      exports: "ScrollTrigger"
+    }
+  },
+});
 
-function RegisterTrigger(trigger) {
-  triggers.push(trigger);
-}
+requirejs(
+  ['gsap', 'ScrollTrigger', 'responsive-type'],
+  function (gsapModule, ScrollTriggerModule, ResponsiveTypeModule) {
 
-(function () { /* Module IIFE to avoid scope pollution */
+    // 1. Pre-boot tasks go here
 
-  window.addEventListener("load", function () {
+    const { gsap } = gsapModule;
+    const { ScrollTrigger } = ScrollTriggerModule;
 
     gsap.registerPlugin(ScrollTrigger);
 
-    setupResponsiveTypography();
+    // 2. Pre-boot state complete 
 
-    runController && runController();
-  });
+    OnDOMReady(() => {
+      require(['controller']);
+    });
 
-  function setupResponsiveTypography() {
-      const viewport = document.querySelector('.viewport');
-
-      const baseViewportWidth = 450;
-      const baseFontSize = parseInt(getComputedStyle(viewport).getPropertyValue('--base-font-size'));
-
-      new ResizeObserver(entries => {
-
-        entries.forEach(entry => {
-          const scale = entry.contentRect.width / baseViewportWidth;
-          viewport.style.setProperty(
-            '--base-font-size',
-            new CSSUnitValue(baseFontSize * scale, 'pt')
-          );
-
-          console.log(`Resizing viewport for responsive typography scaling (scale=${scale.toFixed(2)})`);
-        });
-
-        triggers.forEach(trigger => {
-          ScrollTrigger.refresh();
-        });
-
-      }).observe(viewport);
+    function OnDOMReady(F) {
+      if (document.readyState === "loading") {
+        // Loading hasn't finished yet
+        document.addEventListener("DOMContentLoaded", F);
+      } else {
+        // `DOMContentLoaded` has already fired
+        F();
+      }
+    }
+    
   }
-
-})(); /* End IIFE */
+);

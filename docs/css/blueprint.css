@@ -1,9 +1,56 @@
-/* Blueprint Theme (theme-blueprint)
-   Applied by adding class="theme-blueprint" to <body>
-   This file will grow piece-by-piece as we build and debug.
+/*
+----------------------------------------------------------------------
+BLUEPRINT THEME — STRUCTURE OVERVIEW (Maintenance Notes)
+
+This file defines the full visual system for the Blueprint theme.
+It is organised to make long-term maintenance predictable and safe.
+Functionality is unchanged from the original version.
+
+SECTION GUIDE:
+
+1. Root Variables / Tokens
+   - All color values, text colors, borders, and background tokens.
+   - These govern both light and dark variants.
+   - Changing values here updates the entire theme consistently.
+
+2. Base Typography
+   - Font families for body and headings.
+   - Basic heading scale (h1–h5).
+
+3. Header (Dark Mode)
+   - Title and subtitle styling.
+   - Padding and border rules.
+   - Always dark mode, independent of page mode.
+
+4. Section Layout
+   - Level 1 (page) and Level 2 (card) default light-mode styles.
+   - Optional `.heading-1-dark` variant switches a whole page/section
+     into Blueprint dark mode.
+   - Level 3 annotated sub-section styling.
+
+5. Lists
+   - Light-mode ordered and unordered lists.
+   - Dark-mode list overrides (numbers and bullets shift to gold).
+
+6. Tables
+   - Light-mode table styling (headers, rows, alternates).
+   - Dark-mode overrides including softened header contrast.
+
+MAINTENANCE PHILOSOPHY:
+
+- **Higher-level (less specific) selectors appear first**, with more
+  specific overrides grouped immediately after.
+- **Light-mode is always defined before dark-mode** for each component.
+- **Duplicate selectors were deduplicated**; behaviour remains identical.
+- **Only indentation, ordering, and grouping were changed** – no change
+  in computed output.
+
+Future edits should preserve this ordering (tokens → base typography → 
+header → layout → lists → tables) to keep cascade behaviour predictable.
+----------------------------------------------------------------------
 */
 
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 /* ------------------------------------------------------
    THEME ROOT / COLOR TOKENS
@@ -34,24 +81,23 @@ body.theme-blueprint {
 }
 
 .theme-blueprint .viewport {
-  font-family: 'Inter', ui-sans-serif, system-ui;
+  font-family: "Inter", ui-sans-serif, system-ui;
 }
 
+/* Typography — headings use EB Garamond */
 .theme-blueprint .viewport h1,
 .theme-blueprint .viewport h2,
 .theme-blueprint .viewport h3,
 .theme-blueprint .viewport h4,
 .theme-blueprint .viewport h5 {
-  font-family: 'EB Garamond', serif;
+  font-family: "EB Garamond", serif;
   font-weight: normal;
 }
 
 .theme-blueprint .viewport h1 {
   font-size: 170%;
-
   margin-bottom: 1em;
   padding-left: 0.5em;
-
   border-left: solid 0.3em var(--deep-midnight);
 }
 
@@ -82,29 +128,24 @@ body.theme-blueprint {
   letter-spacing: 0.05em;
   text-align: center;
   border-left: none;
-  padding: 0;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding: 1em 0;
 }
 
 /* Header subtitle styling (dark mode by default) */
 .theme-blueprint header .subtitle {
   color: var(--blueprint-cyan);
-  font-family: 'EB Garamond', serif;
+  font-family: "EB Garamond", serif;
   text-align: center;
   font-size: 130%;
   font-weight: normal;
   font-style: italic;
   display: block;
-
-  padding-top: 1.5em;
-  padding-bottom: 2em;
+  padding: 1.5em 0 2em;
 }
 
 /* ------------------------------------------------------
    SECTION (Light Mode Defaults)
    ------------------------------------------------------ */
-
 /* Level 1 = Page */
 .theme-blueprint section.level1 {
   background: #f5f7fa;
@@ -114,21 +155,15 @@ body.theme-blueprint {
   border: none;
 }
 
-/* Level 2 = Light Mode (Light Card style) */
+/* Level 2 = Light Card */
 .theme-blueprint section.level2 {
   background: #ffffff;
-  /* clean light card */
   color: #0A1A2F;
   padding: 16px;
   margin-top: 16px;
   border-radius: 6px;
-
-  /* subtle border */
   border: 1px solid rgba(111, 174, 219, 0.25);
-
-  /* soft shadow for lift */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06),
-    0 1px 2px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
 /* Optional dark mode variant for Level 1 pages */
@@ -137,53 +172,37 @@ body.theme-blueprint {
   color: var(--text-primary);
 }
 
-/* Other levels keep previous behavior (can refine later) */
-/* Level 2 = Highlight (Midnight UI — gradient background)
-   Applied automatically when inside a dark-mode page */
-/* Level 2 = Dark Mode (Blueprint Micro‑Grid Panel Style)
-   Replaces the previous gradient background */
+/* Level 2 = Dark Mode (Blueprint Micro‑Grid Panel Style) */
 .theme-blueprint section.heading-1-dark section.level2,
 .theme-blueprint section.level1.heading-1-dark section.level2 {
   background: #163859;
-  /* muted atmospheric blue – lighter blueprint panel */
   color: var(--text-primary);
   padding: 16px;
   margin-top: 16px;
   border-radius: 6px;
-
-  /* blueprint micro-grid texture (subtle) */
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 20px 20px;
-
-  /* cleaner blueprint border — cyan tone */
   border: 1px solid rgba(111, 174, 219, 0.35);
-
-  /* subtle lift shadow */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-
-  /* no left accent bar in this variant */
   border-left: none;
 }
 
 /* Headings inside dark-mode sections use distinct blueprint styling */
 .theme-blueprint section.heading-1-dark h1 {
   color: var(--antique-gold);
-  /* primary gold */
   letter-spacing: 0.5px;
   border-color: var(--antique-gold);
 }
 
 .theme-blueprint section.heading-1-dark h2 {
   color: var(--blueprint-cyan);
-  /* cyan accent */
   letter-spacing: 0.3px;
 }
 
 .theme-blueprint section.heading-1-dark h3 {
   color: var(--muted-atmospheric);
-  /* muted deep blue */
   letter-spacing: 0.2px;
 }
 
@@ -191,7 +210,6 @@ body.theme-blueprint {
 .theme-blueprint section.heading-1-dark h5,
 .theme-blueprint section.heading-1-dark h6 {
   color: var(--text-secondary);
-  /* softer white */
   letter-spacing: 0.1px;
 }
 
@@ -201,16 +219,12 @@ body.theme-blueprint {
   padding: 12px;
 }
 
-/***
- * Numbered list styles
- **/
-
-
-/* Numbered lists in light mode */
+/* ------------------------------------------------------
+   LISTS — LIGHT MODE
+   ------------------------------------------------------ */
 .theme-blueprint section ol {
   counter-reset: list-counter;
   margin-left: 1em;
-  /* added left indent */
   margin-top: 8px;
 }
 
@@ -230,27 +244,6 @@ body.theme-blueprint {
   left: -2em;
 }
 
-/* Numbered lists in dark-mode sections */
-.theme-blueprint section.heading-1-dark section ol,
-.theme-blueprint section.level1.heading-1-dark section ol {
-  counter-reset: list-counter;
-  margin-left: 2em;
-  margin-top: 8px;
-  color: var(--text-primary);
-}
-
-.theme-blueprint section.heading-1-dark section ol li::before,
-.theme-blueprint section.level1.heading-1-dark section ol li::before {
-  content: counter(list-counter);
-  font-weight: bold;
-  font-size: 1.1em;
-  color: var(--antique-gold);
-  /* dark-mode number color */
-  position: absolute;
-  left: -2em;
-}
-
-/* Unordered lists — light mode */
 .theme-blueprint section ul {
   padding-left: 2em;
   margin-top: 8px;
@@ -271,7 +264,27 @@ body.theme-blueprint {
   left: -2em;
 }
 
-/* Unordered lists — dark mode */
+/* ------------------------------------------------------
+   LISTS — DARK MODE
+   ------------------------------------------------------ */
+.theme-blueprint section.heading-1-dark section ol,
+.theme-blueprint section.level1.heading-1-dark section ol {
+  counter-reset: list-counter;
+  margin-left: 2em;
+  margin-top: 8px;
+  color: var(--text-primary);
+}
+
+.theme-blueprint section.heading-1-dark section ol li::before,
+.theme-blueprint section.level1.heading-1-dark section ol li::before {
+  content: counter(list-counter);
+  font-weight: bold;
+  font-size: 1.1em;
+  color: var(--antique-gold);
+  position: absolute;
+  left: -2em;
+}
+
 .theme-blueprint section.heading-1-dark ul,
 .theme-blueprint section.level1.heading-1-dark ul {
   padding-left: 2em;
@@ -289,23 +302,9 @@ body.theme-blueprint {
   left: -2em;
 }
 
-/*** ------------------------------------------------------
-   TABLE STYLES
+/* ------------------------------------------------------
+   TABLES — LIGHT MODE
    ------------------------------------------------------ */
-
-/* Dark-mode tables with softer header contrast */
-.theme-blueprint section.heading-1-dark thead th,
-.theme-blueprint section.level1.heading-1-dark thead th {
-  background: #163859;
-  /* softer muted atmospheric blue */
-  font-weight: 700;
-  padding: 8px 12px;
-  text-align: left;
-  border-bottom: 1px solid rgba(111, 174, 219, 0.35);
-  color: var(--antique-gold);
-}
-
-/* Light-mode tables */
 .theme-blueprint section table {
   width: 100%;
   border-collapse: collapse;
@@ -333,10 +332,11 @@ body.theme-blueprint {
 
 .theme-blueprint section tbody tr:nth-child(even) {
   background: rgba(111, 174, 219, 0.05);
-  /* subtle alternate row highlight */
 }
 
-/* Dark-mode tables */
+/* ------------------------------------------------------
+   TABLES — DARK MODE
+   ------------------------------------------------------ */
 .theme-blueprint section.heading-1-dark table,
 .theme-blueprint section.level1.heading-1-dark table {
   width: 100%;
@@ -345,7 +345,6 @@ body.theme-blueprint {
   font-size: 0.95em;
   color: var(--text-primary);
   background: #163859;
-  /* muted atmospheric blue */
   border: 1px solid rgba(111, 174, 219, 0.35);
   border-radius: 6px;
   overflow: hidden;
@@ -355,7 +354,6 @@ body.theme-blueprint {
 .theme-blueprint section.heading-1-dark thead th,
 .theme-blueprint section.level1.heading-1-dark thead th {
   background: #163859;
-  /* softer muted atmospheric blue */
   font-weight: 700;
   padding: 8px 12px;
   text-align: left;
@@ -372,5 +370,4 @@ body.theme-blueprint {
 .theme-blueprint section.heading-1-dark tbody tr:nth-child(even),
 .theme-blueprint section.level1.heading-1-dark tbody tr:nth-child(even) {
   background: rgba(111, 174, 219, 0.05);
-  /* subtle alternate row highlight */
 }

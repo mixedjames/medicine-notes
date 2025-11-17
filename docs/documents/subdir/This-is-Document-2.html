@@ -18,8 +18,8 @@
     <div class="viewport" id="viewport">
                   <header id="title-block-header">
         <h1 class="title">This is Document 2!</h1>
-                                                  <p>This is Document 2
-                                                  – look at it go.</p>
+                                                <p>This is Document 2 –
+                                                look at it go.</p>
               </header>
                   
           </div><!-- .viewport -->
@@ -27,10 +27,17 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="../../js/bootstrap.js"></script>
+  <script data-main="../../js/bootstrap" src="../../js/require.js"></script>
 
-    <!-- No controller script provided -->
-      
+  <script type="text/javascript" id="controller">
+    define(
+      'controller',
+      ['effects/pin-to-bottom'],
+      function (PinToBottom) {
+        
+      }
+    );
+  </script>
 </body>
 
 </html>

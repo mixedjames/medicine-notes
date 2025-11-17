@@ -10,18 +10,18 @@
 
     
     <style>
-  /* Some css! */
+    /* Some css! */
 
-  .Heading-1-Green {
-    color: red;
-  }
+    .Heading-1-Green {
+      color: red;
+    }
 
-  #the-first-heading figure {
-    border: solid black 1px;
-    position: sticky;
-    top: 20px;
-    bottom: -100px;
-  }
+    #the-first-heading figure {
+      border: solid black 1px;
+      position: sticky;
+      top: 20px;
+      bottom: -100px;
+    }
   </style>
   
 </head>
@@ -33,32 +33,30 @@
         <h1 class="title">Document 1</h1>
                 <p class="subtitle">Dr James Heggie MBChB MRCP(UK) FRCA
 FFICM</p>
-                                                  <p>This is a
-                                                  <strong>preamble</strong>.
-                                                  Because there hasn’t
-                                                  been a <strong>level 1
-                                                  heading</strong> yet
-                                                  this will all appear
-                                                  within a <span
-                                                  data-custom-style="Inline Code">&lt;header&gt;</span>
-                                                  element and wont be
-                                                  wrapped in a <span
-                                                  data-custom-style="Inline Code">&lt;section&gt;</span>.
-                                                  I think I like this –
-                                                  we’ll see.</p>
-                                                  <p>I’m not sure how
-                                                  much I can change – I
-                                                  didn’t really want to
-                                                  get into Lua filters
-                                                  but then I
-                                                  accidentally did. Oh
-                                                  well – it works nicely
-                                                  anyway.</p>
-                                                  <p>And I think its
-                                                  short enough that I’m
-                                                  not worried its
-                                                  sending my details to
-                                                  China.</p>
+                                                <p>This is a
+                                                <strong>preamble</strong>.
+                                                Because there hasn’t
+                                                been a <strong>level 1
+                                                heading</strong> yet
+                                                this will all appear
+                                                within a <span
+                                                data-custom-style="Inline Code">&lt;header&gt;</span>
+                                                element and wont be
+                                                wrapped in a <span
+                                                data-custom-style="Inline Code">&lt;section&gt;</span>.
+                                                I think I like this –
+                                                we’ll see.</p>
+                                                <p>I’m not sure how much
+                                                I can change – I didn’t
+                                                really want to get into
+                                                Lua filters but then I
+                                                accidentally did. Oh
+                                                well – it works nicely
+                                                anyway.</p>
+                                                <p>And I think its short
+                                                enough that I’m not
+                                                worried its sending my
+                                                details to China.</p>
               </header>
                   <section id="the-first-heading" class="level1">
                   <h1>The first heading</h1>
@@ -146,14 +144,17 @@ FFICM</p>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="../../js/bootstrap.js"></script>
+  <script data-main="../../js/bootstrap" src="../../js/require.js"></script>
 
-    <script type="text/javascript">
-  function runController() {
-  console.log("Hello there! This is Document-1.js in the docx directory.");
-  }
+  <script type="text/javascript" id="controller">
+    define(
+      'controller',
+      ['effects/pin-to-bottom'],
+      function (PinToBottom) {
+        console.log("Hello there! This is Document-1.js in the docx directory.");
+      }
+    );
   </script>
-      
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 section.sticky-section.level1 {
-  height: auto;
+  min-height: auto;
 }
 
 .sticky-section figure {
@@ -11,6 +11,7 @@ section.sticky-section.level1 {
 section.parallax-section.level1 {
   background-image: url("sticky/space.jpg");
   height: auto;
+  min-height: auto;
 
   color: white;
   padding-top: 150pt;
