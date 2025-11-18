@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+          <title>Stepped table test</title>
+  <link rel="stylesheet" href="../../css/styles.css" />
+
+    
+    <style>
+    .viewport section *[data-custom-style="trigger"] {
+      max-height: 1px;
+      overflow: hidden;
+    }
+
+    .viewport section.table-section p {
+      padding-bottom: 80%;
+    }
+
+    .viewport section.table-section .pin-wrap {
+      background: lightgray;
+      padding-top: 2em;
+      padding-bottom: 2em;
+    }
+
+    .viewport section.table-section table tr {
+      animation: fade-bg-back 0.5s ease-in-out;
+    }
+
+    .viewport section.table-section table tr.highlight {
+      background: var(--deep-midnight);
+      color: var(--blueprint-cyan);
+      animation: fade-bg 0.5s ease-in-out;
+    }
+
+    @keyframes fade-bg {
+        0% {
+            background: inherit;
+        }
+        100% {
+          background: var(--deep-midnight);
+          color: var(--blueprint-cyan);
+        }
+    }
+
+    @keyframes fade-bg-back {
+        0% {
+          background: var(--deep-midnight);
+          color: var(--blueprint-cyan);
+        }
+        100% {
+            background: inherit;
+        }
+    }
+  </style>
+  
+</head>
+
+<body class="viewport-container-outer theme-blueprint">
+  <div class="viewport-container-inner">
+    <div class="viewport" id="viewport">
+                  <header id="title-block-header">
+        <h1 class="title">Stepped table test</h1>
+                                                true
+              </header>
+                  <section id="the-table" class="level1 table-section">
+                  <h1 class="table-section">The table</h1>
+                  <p>This is the intro text. It will be immediately
+                  followed by the table itself. After the table will be
+                  a series of text blocks. I think we will separate each
+                  block using a ‘marker’ style that will not be visible
+                  in the final document.</p>
+                  <table data-custom-style="PlainTable5">
+                  <colgroup>
+                  <col style="width: 25%" />
+                  <col style="width: 25%" />
+                  <col style="width: 25%" />
+                  <col style="width: 25%" />
+                  </colgroup>
+                  <thead>
+                  <tr>
+                  <th></th>
+                  <th>Alpha</th>
+                  <th>Beta</th>
+                  <th>Gamma</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                  <td>One</td>
+                  <td>Abc</td>
+                  <td>Jkl</td>
+                  <td>Stu</td>
+                  </tr>
+                  <tr>
+                  <td>Two</td>
+                  <td>Def</td>
+                  <td>Mno</td>
+                  <td>Vwx</td>
+                  </tr>
+                  <tr>
+                  <td>Three</td>
+                  <td>Ghi</td>
+                  <td>Pqr</td>
+                  <td>Yz</td>
+                  </tr>
+                  </tbody>
+                  </table>
+                  <p>This line of text will cause line one to become
+                  highlighted. Let’s have a bit more text to take up
+                  some room. And some more.</p>
+                  <p>This line of text will cause line two to become
+                  highlighted. Once this text is all gone, we’ll have to
+                  go into another section to reset things. Let’s see how
+                  it all comes out!</p>
+                  </section>
+                  <section id="another-section" class="level1">
+                  <h1>Another section</h1>
+                  <p>And we’re done.</p>
+                  </section>
+          </div><!-- .viewport -->
+  </div><!-- .viewport-container-inner -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script data-main="../../js/bootstrap" src="../../js/require.js"></script>
+
+  <script type="text/javascript" id="controller">
+    define(
+      'controller',
+      ['effects/pin-to-bottom', 'effects/pin-to-top', 'effects/parallax-bg', 'effects/highlight-on-flypast'],
+      function (PinToBottom, PinToTop, ParallaxBG, HighlightOnFlypast) {
+        PinToBottom({ element: '.table-section table', });
+
+        HighlightOnFlypast({
+          triggers: '.table-section p',
+          targets: '.table-section table tbody tr',
+          highlightClass: 'highlight',
+        });
+      }
+    );
+  </script>
+</body>
+
+</html>

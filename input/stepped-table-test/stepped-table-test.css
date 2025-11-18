@@ -1,0 +1,43 @@
+.viewport section *[data-custom-style="trigger"] {
+  max-height: 1px;
+  overflow: hidden;
+}
+
+.viewport section.table-section p {
+  padding-bottom: 80%;
+}
+
+.viewport section.table-section .pin-wrap {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.viewport section.table-section table tr {
+  animation: fade-bg-back 0.5s ease-in-out;
+}
+
+.viewport section.table-section table tr.highlight {
+  background: var(--deep-midnight);
+  color: var(--blueprint-cyan);
+  animation: fade-bg 0.5s ease-in-out;
+}
+
+@keyframes fade-bg {
+    0% {
+        background: inherit;
+    }
+    100% {
+      background: var(--deep-midnight);
+      color: var(--blueprint-cyan);
+    }
+}
+
+@keyframes fade-bg-back {
+    0% {
+      background: var(--deep-midnight);
+      color: var(--blueprint-cyan);
+    }
+    100% {
+        background: inherit;
+    }
+}
