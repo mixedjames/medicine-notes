@@ -154,25 +154,31 @@
 
         const sectionEl = document.querySelector('.viewport .table-section');
         const pFirst = document.querySelector('.viewport .table-section p:first-of-type');
+        const pLast = document.querySelector('.viewport .table-section p:last-of-type');
 
         const arrowEl = document.createElement('div');
         arrowEl.classList.add('arrow');
 
         sectionEl.insertBefore(arrowEl, pFirst);
 
-        if (true) {
+        setTimeout(() => {
           ScrollTrigger.create({
-            trigger: mainTrigger.trigger,   // inherits DOM element
-            scroller: mainTrigger.scroller,
-            start: mainTrigger.vars.start,  // inherits start value
-            end: mainTrigger.vars.end,      // inherits end value
+            trigger: pFirst,
+            scroller: '#viewport',
+            start: () => mainTrigger.start,
+            end: () => {
+              const offset = pLast.offsetTop + pLast.offsetHeight - pFirst.offsetTop - arrowEl.offsetHeight;
+
+              //return mainTrigger.start + 500;
+              return mainTrigger.start + offset;
+            },
             pin: arrowEl,
             pinSpacing: false,                     // remove leftover spacing
             pinType: "transform",                  // smooth mobile pinning
             anticipatePin: 0,                       // reduces jump at start
-            markers: false,
+            markers: true,
           });
-        }
+        }, 500);
 
         HighlightOnFlypast({
           triggers: '.table-section p',
