@@ -22,6 +22,10 @@ requirejs(
     const { ScrollTrigger } = ScrollTriggerModule;
 
     gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.normalizeScroll({
+      allowNestedScroll: true,
+      type: "touch,wheel,pointer",
+    });
 
     // 2. Pre-boot state complete 
 
