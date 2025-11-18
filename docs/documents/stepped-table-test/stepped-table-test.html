@@ -15,13 +15,27 @@
       overflow: hidden;
     }
 
-    .viewport section.table-section p {
-      padding-bottom: 80%;
+    .viewport section.table-section .arrow {
+      display: block;
+      width: 1.5em;
+      height: 1.5em;
+      background: black;
+      float: left;
     }
 
-    .viewport section.table-section .pin-wrap {
-      padding-top: 2em;
-      padding-bottom: 2em;
+    .viewport section.table-section p {
+      padding-bottom: 50%;
+      padding-left: 2em;
+    }
+
+    .viewport section.table-section p:last-of-type {
+      padding-bottom: 0;
+    }
+
+    .viewport section.table-section .pin-wrap-inner {
+      padding-bottom: 1em;
+      padding-top: 1em;
+      background: #f5f7fa;
     }
 
     .viewport section.table-section table tr {
@@ -115,9 +129,14 @@
                   go into another section to reset things. Let’s see how
                   it all comes out!</p>
                   </section>
-                  <section id="another-section" class="level1">
-                  <h1>Another section</h1>
+                  <section id="another-section" class="level1 wiper">
+                  <h1 class="wiper">Another section</h1>
                   <p>And we’re done.</p>
+                  </section>
+                  <section id="and-another" class="level1">
+                  <h1>And another</h1>
+                  <p>And this one will hopefully wipe up over the
+                  previous on.</p>
                   </section>
           </div><!-- .viewport -->
   </div><!-- .viewport-container-inner -->
@@ -131,7 +150,29 @@
       'controller',
       ['effects/pin-to-bottom', 'effects/pin-to-top', 'effects/parallax-bg', 'effects/highlight-on-flypast'],
       function (PinToBottom, PinToTop, ParallaxBG, HighlightOnFlypast) {
-        PinToBottom({ element: '.table-section table', });
+        const mainTrigger = PinToBottom({ element: '.table-section table', });
+
+        const sectionEl = document.querySelector('.viewport .table-section');
+        const pFirst = document.querySelector('.viewport .table-section p:first-of-type');
+
+        const arrowEl = document.createElement('div');
+        arrowEl.classList.add('arrow');
+
+        sectionEl.insertBefore(arrowEl, pFirst);
+
+        if (true) {
+          ScrollTrigger.create({
+            trigger: mainTrigger.trigger,   // inherits DOM element
+            scroller: mainTrigger.scroller,
+            start: mainTrigger.vars.start,  // inherits start value
+            end: mainTrigger.vars.end,      // inherits end value
+            pin: arrowEl,
+            pinSpacing: false,                     // remove leftover spacing
+            pinType: "transform",                  // smooth mobile pinning
+            anticipatePin: 0,                       // reduces jump at start
+            markers: false,
+          });
+        }
 
         HighlightOnFlypast({
           triggers: '.table-section p',

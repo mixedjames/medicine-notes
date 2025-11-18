@@ -3,13 +3,27 @@
   overflow: hidden;
 }
 
-.viewport section.table-section p {
-  padding-bottom: 80%;
+.viewport section.table-section .arrow {
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  background: black;
+  float: left;
 }
 
-.viewport section.table-section .pin-wrap {
-  padding-top: 2em;
-  padding-bottom: 2em;
+.viewport section.table-section p {
+  padding-bottom: 50%;
+  padding-left: 2em;
+}
+
+.viewport section.table-section p:last-of-type {
+  padding-bottom: 0;
+}
+
+.viewport section.table-section .pin-wrap-inner {
+  padding-bottom: 1em;
+  padding-top: 1em;
+  background: #f5f7fa;
 }
 
 .viewport section.table-section table tr {

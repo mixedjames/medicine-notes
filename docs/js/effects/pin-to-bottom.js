@@ -11,15 +11,20 @@ define(
       const element = document.querySelector(options.element);
       const section = element.closest("section");
 
+      const innerWrapper = document.createElement("div");
+      innerWrapper.classList.add("pin-wrap-inner");
+
       // Wrap element dynamically
       const wrapper = document.createElement("div");
       wrapper.classList.add("pin-wrap");
+
       element.parentNode.insertBefore(wrapper, element);
-      wrapper.appendChild(element);
+      wrapper.appendChild(innerWrapper);
+      innerWrapper.appendChild(element);
 
       // Create spacer to maintain layout
       const spacer = document.createElement("div");
-      spacer.style.height = window.getComputedStyle(element).height;
+      spacer.style.height = window.getComputedStyle(innerWrapper).height;
       section.appendChild(spacer);
 
       //
@@ -30,7 +35,8 @@ define(
         start: "bottom bottom",               // when figure bottom hits viewport bottom
         end: () => {
           const spacerRect = spacer.getBoundingClientRect();
-          const elementRect = element.getBoundingClientRect();
+          //const elementRect = element.getBoundingClientRect();
+          const elementRect = innerWrapper.getBoundingClientRect();
           const offset = spacerRect.top - elementRect.top - elementRect.height;
           return `bottom bottom-=${offset}px`;
         },
@@ -38,11 +44,13 @@ define(
         pin: wrapper,                         // pin wrapper, not figure
         pinSpacing: false,                     // remove leftover spacing
         pinType: "transform",                  // smooth mobile pinning
-        anticipatePin: 1,                       // reduces jump at start
+        anticipatePin: 0,                       // reduces jump at start
         markers: false,
       });
 
       trigger.spacer.style.maxHeight = "0px";
+      
+      return trigger;
 
     }; // function PinToBottom
 
