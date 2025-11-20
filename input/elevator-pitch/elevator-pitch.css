@@ -1,0 +1,7 @@
+.viewport section.parallax-section-1 {
+  min-height: auto;
+  background-image: url('elevator-pitch/water-bg.jpg');
+
+  padding-top: 8em;
+  padding-bottom: 8em;
+}

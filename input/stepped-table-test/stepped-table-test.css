@@ -7,7 +7,8 @@
   display: block;
   width: 1.5em;
   height: 1.5em;
-  background: black;
+  background-image: url('stepped-table-test/arrow.svg');
+  background-size: contain;
   float: left;
 }
 

@@ -21,7 +21,7 @@ define(
             start: "top bottom",          // when section top enters viewport
             end: "bottom top",            // when section bottom leaves viewport
             scrub: true,                  // smooth parallax tied to scroll
-            markers: true,
+            markers: false,
           }
         }
       );

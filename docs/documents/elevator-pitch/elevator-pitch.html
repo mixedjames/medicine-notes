@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+          <title>1 Bite of the Elephant</title>
+  <link rel="stylesheet" href="../../css/styles.css" />
+
+    
+    <style>
+    .viewport section.parallax-section-1 {
+      min-height: auto;
+      background-image: url('elevator-pitch/water-bg.jpg');
+
+      padding-top: 8em;
+      padding-bottom: 8em;
+    }
+  </style>
+  
+</head>
+
+<body class="viewport-container-outer theme-blueprint">
+  <div class="viewport-container-inner">
+    <div class="viewport" id="viewport">
+                  <header id="title-block-header">
+        <h1 class="title">1 Bite of the Elephant</h1>
+                <p class="subtitle">Re-imagining written meducation in
+2025</p>
+                                                <p>Scroll on to
+                                                explore…</p>
+              </header>
+                  <section id="the-problem" class="level1">
+                  <h1>The Problem</h1>
+                  <p>Some (many?) of us still learn by reading.</p>
+                  <p>Unlike 20 years ago, most reading is done on a
+                  smartphone.</p>
+                  <p>Yet we still write like we are writing textbooks or
+                  journal articles:</p>
+                  <ul>
+                  <li><div data-custom-style="List Paragraph">
+                  <p>Long blocks of text in small fonts</p>
+                  </div></li>
+                  <li><div data-custom-style="List Paragraph">
+                  <p>Few, dense diagrams</p>
+                  </div></li>
+                  <li><div data-custom-style="List Paragraph">
+                  <p>Static images</p>
+                  </div></li>
+                  </ul>
+                  <p>This made sense when space on the page was limited,
+                  and textbooks were already door-jam-sized.</p>
+                  </section>
+                  <section id="we-can-do-better" class="level1">
+                  <h1>We can do better</h1>
+                  <p>Fortunately, we live in the future!</p>
+                  <p>Reading on an electronic device, particularly, a
+                  phone, is a very different experience…</p>
+                  <ol type="1">
+                  <li><div data-custom-style="List Paragraph">
+                  <p>The physical screen is small<br />
+                  <em>…but…</em></p>
+                  </div></li>
+                  <li><div data-custom-style="List Paragraph">
+                  <p>The available space for content is limitless!<br />
+                  <em>…and…</em></p>
+                  </div></li>
+                  <li><div data-custom-style="List Paragraph">
+                  <p>A screen is not paper</p>
+                  </div></li>
+                  </ol>
+                  </section>
+                  <section id="we-can-animate"
+                  class="level1 parallax-section-1">
+                  <h1 class="parallax-section-1">We can animate</h1>
+                  <p>Visual appear isn’t just a gimmick – it can help
+                  maintain interest and focus.</p>
+                  </section>
+                  <section id="we-can-take-as-much-space-as-we-need"
+                  class="level1">
+                  <h1>We can take as much space as we need</h1>
+                  <p>Virtual screen space costs nothing!</p>
+                  </section>
+                  <section id="we-can-connect-ideas" class="level1">
+                  <h1>We can connect ideas</h1>
+                  <table style="width:100%;"
+                  data-custom-style="PlainTable5">
+                  <colgroup>
+                  <col style="width: 33%" />
+                  <col style="width: 33%" />
+                  <col style="width: 33%" />
+                  </colgroup>
+                  <thead>
+                  <tr>
+                  <th>Name</th>
+                  <th>Favourite colour</th>
+                  <th>Age</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                  <td>James</td>
+                  <td>Blue</td>
+                  <td>25</td>
+                  </tr>
+                  <tr>
+                  <td>Sarah</td>
+                  <td>Red</td>
+                  <td>30</td>
+                  </tr>
+                  <tr>
+                  <td>Alice</td>
+                  <td>Green</td>
+                  <td>18</td>
+                  </tr>
+                  </tbody>
+                  </table>
+                  <p>A table with three rows is pinned to the bottom of
+                  the screen now. As you scroll down, you’ll notice that
+                  each row highlights in turn.</p>
+                  <p>You can build an idea one step at a time. You can
+                  use scroll-triggered visual cues to keep the reader’s
+                  focus where you want it.</p>
+                  <p>There’s also an arrow point to the paragraph that
+                  relates to the row we’re talking about. This helps
+                  keep readers in sync.</p>
+                  </section>
+                  <section id="we-can-draw" class="level1">
+                  <h1>We can draw</h1>
+                  </section>
+          </div><!-- .viewport -->
+  </div><!-- .viewport-container-inner -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script data-main="../../js/bootstrap" src="../../js/require.js"></script>
+
+  <script type="text/javascript" id="controller">
+    define(
+      'controller',
+      ['effects/pin-to-bottom', 'effects/pin-to-top', 'effects/parallax-bg', 'effects/highlight-on-flypast'],
+      function (PinToBottom, PinToTop, ParallaxBG, HighlightOnFlypast) {
+        ParallaxBG({
+          section: '.viewport section.parallax-section-1',
+          from: '0% 20%',
+          to: '100% 80%',
+        });
+      }
+    );
+  </script>
+</body>
+
+</html>
